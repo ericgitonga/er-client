@@ -626,8 +626,11 @@ class ERClient(object):
                 yield results
                 break
 
+    from time import time
     def get_objects_multithreaded(self, **kwargs):
+        start = time()
         threads = kwargs.get("threads", 5)
+        print("It took " + str(round(time() - start), 2) + " seconds to run threads line.")
         params = dict((k, v) for k, v in kwargs.items() if k not in ('page'))
         if (not params.get('object')):
             raise ValueError("Must specify object URL")
